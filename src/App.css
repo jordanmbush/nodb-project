@@ -2,9 +2,46 @@
   text-align: center;
 }
 
+.body-content {
+  background-image: url('https://vignette.wikia.nocookie.net/finalfantasy/images/c/c8/Battleback_coliseum.png/revision/latest?cb=20141030003602');
+  min-height: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.body-content h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.main-content {
+  width: 80%;
+  background-color: #24232398;
+  margin: auto;
+  border-radius: 20px;
+  text-align: left;
+  padding: 20px 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25px;
+}
+
+.main-content li {
+  margin: 5px 0;
+}
+
+.main {
+  background-color: #2423234f
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 30px;
+  margin-top: 30px;
+  border-radius: 10px;
+  padding: 20px 10px;
+  box-shadow: -5px 10px #c77979;
+  background-color: #ce8989
 }
 
 .App-header {
@@ -25,4 +62,196 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* 
+=========================SLIDER============================
+*/
+.slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 15px;
+  border-radius: 5px;   
+  background: #ffffff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: rgb(175, 173, 76);
+  curser: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+/* ==================================================== */
+
+.page-header {
+  color: white;
+}
+
+.AddPerson-Textbox {
+  display: inline-block;
+}
+.person-name {
+  margin-right: 15px;
+}
+
+.programmerCount {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 200px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+}
+
+.image-box {
+  margin: 5px auto;
+  /* min-height: 150px; */
+  max-height: 180px;
+  max-width: 250px;
+  /* background-color: rgb(95, 92, 92); */
+  /* background-size: cover; */
+  display: block;
+}
+
+.submit-button {
+  background-color: #000000; /* Green */
+  border: 1px solid white;
+  color: white;
+  padding: 5px 15px;
+  margin: 10px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.warriorProfile-tile {
+  width: 250px;
+  min-height: 200px;
+  /* border: 1px solid red; */
+  margin: auto;
+  padding: 10px;
+}
+
+.tile-image {
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
+  min-height: 150px;
+  max-height: 180px;
+}
+.programmer-tiles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 90%;
+}
+
+.warriorProfile-tile.span {
+  text-align: center;
+  display: block;
+}
+.warriorTileContainer {
+  border: 5px solid black;
+  text-align: center;
+  /* padding: 10px 40px; */
+  margin: 1px;
+  justify-content: space-around;
+  position: relative;
+  background-color: #6160609d
+}
+.skill {
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.tile-input-items {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+small {
+  text-decoration: underline;
+}
+
+.skill-points-left {
+  font-size: 25px;
+  display: block;
+  margin: 10px;
+  color: black;
+  font-style: italic;
+}
+
+.battle-checkbox {
+  width: 20px;
+}
+
+.tile-button {
+  border-radius: 4px;
+  color: white;
+  margin: 5px;
+}
+
+.kill-button {
+  background-color: red;
+  /* margin-right: 10px; */
+}
+
+.update-button {
+  background-color: green;
+}
+
+.help-button {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+
+.footer-bar {
+  height: 50px;
+}
+
+.winner-container {
+  background-image: url('https://t3.ftcdn.net/jpg/01/05/11/60/160_F_105116072_ihP9tWblUL1TXeoR5lvkJhC722Nyb4fA.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.looser-container {
+  background-image: url('https://n6-img-fp.akamaized.net/free-vector/detailed-grunge-background-with-drips-and-splats_1048-2121.jpg?size=338&ext=jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
