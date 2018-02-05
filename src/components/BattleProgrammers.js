@@ -15,13 +15,17 @@ export default class BattleProgrammers extends Component {
         this.getWarriorProfiles = this.getWarriorProfiles.bind(this);
         this.deleteProgrammer = this.deleteProgrammer.bind(this);
         this.updateProgrammer = this.updateProgrammer.bind(this);
+        this.getWarriorIndexByID = this.getWarriorIndexByID.bind(this);
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/api/programmers').then( response => {
-            this.setState({
-                programmers: response.data,
-            })
+        // axios.get('http://localhost:4000/api/programmers').then( response => {
+        //     this.setState({
+        //         programmers: response.data,
+        //     })
+        // })
+        this.setState({
+            programmers: this.props.programmers
         })
     }
 
@@ -29,7 +33,8 @@ export default class BattleProgrammers extends Component {
         let id = e.target.id;
         let programmersCopy = this.state.programmers.slice();
         
-        programmersCopy[id].battleReady = !programmersCopy[id].battleReady;
+        let warriorIndex = this.getWarriorIndexByID(id);
+        programmersCopy[warriorIndex].battleReady = !programmersCopy[warriorIndex].battleReady;
 
         this.setState({
             programmers: programmersCopy
@@ -39,6 +44,7 @@ export default class BattleProgrammers extends Component {
     }
     deleteProgrammer(e) {
         let id = e.target.id;
+
 
         axios.delete(`http://localhost:4000/api/programmer?id=${id}`).then( response => {
             let programmersCopy = response.data; 
@@ -56,23 +62,30 @@ export default class BattleProgrammers extends Component {
     updateProgrammer(e) {
         let id = e.target.id;
         let selectedProgrammer = this.state.programmers.filter( programmer => {
-            console.log("filter programmers: ", programmer)
             return programmer.id === parseInt(id);
         })
-        console.log(e.target)
-        console.log("selected array: ",selectedProgrammer)
         this.props.selectProgrammer(selectedProgrammer[0]);
     }
 
+    getWarriorIndexByID(id) {
+        let warriorIndex = null;
+        for(let i = 0; i < this.state.programmers.length; i++) {
+            if(this.state.programmers[i].id === +id) {
+                warriorIndex = i;
+            }
+        }
+        return warriorIndex;
+    }
+
     getWarriorProfiles() {
-        let profiles = this.state.programmers.map( (programmer, i) => {
+        let profiles = this.state.programmers.map( (programmer) => {
             return (
                 <div className="warriorTileContainer">
                     <WarriorProfile programmer={programmer} id={programmer.id} />
                     <div className="tile-input-itmes">
                         <input className="tile-button kill-button" type="button" id={programmer.id} value="Disqualify" onClick={ e => this.deleteProgrammer(e)}></input>
                         <input className="tile-button update-button" type="button" id={programmer.id} value="Alter the Arsenal" onClick={ e => this.updateProgrammer(e)}></input>
-                        <input className="battle-checkbox" type="checkbox" id={programmer.id} checked={!!this.state.programmers[i].battleReady} onClick={ e => this.prepareForBattle(e)}></input>
+                        <input className="battle-checkbox" type="checkbox" id={programmer.id} checked={this.state.programmers[this.getWarriorIndexByID(programmer.id)].battleReady} onClick={ e => this.prepareForBattle(e)}></input>
                     </div>
                 </div>
             );

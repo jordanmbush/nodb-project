@@ -122,6 +122,7 @@
   margin: 5px auto;
   /* min-height: 150px; */
   max-height: 180px;
+  min-width: 150px;
   max-width: 250px;
   /* background-color: rgb(95, 92, 92); */
   /* background-size: cover; */
@@ -240,9 +241,16 @@ small {
   background-image: url('https://n6-img-fp.akamaized.net/free-vector/detailed-grunge-background-with-drips-and-splats_1048-2121.jpg?size=338&ext=jpg');
   background-repeat: no-repeat;
   background-size: cover;
+
+  /* animation: fadein 2.5s; */
+  animation: shake 2.5s;
+}
+
+@keyframes fadein {
 }
 
 @keyframes shake {
+  from { opacity: 0; }
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
   20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -254,4 +262,5 @@ small {
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+  to   { opacity: 1; }
 }

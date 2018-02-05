@@ -3,23 +3,6 @@ import Slider from './Slider';
 import axios from 'axios';
 import './../App.css';
 
-// const emptyProgrammer = {
-//     name: '',
-//     age: '',
-//     battleReady: false,
-//     codeSkills: {
-//         react: 0,
-//         javascript: 0,
-//         html: 0,
-//         css: 0,
-//         node: 0,
-//         sql: 0,
-//         committment: 0,
-//         commandPrompt: 0
-//     },
-//     imgURL: '',
-// }
-
 export default class AddProgrammer extends Component {
     constructor() {
         super();
@@ -35,6 +18,7 @@ export default class AddProgrammer extends Component {
         this.addProgrammer = this.addProgrammer.bind(this);
         this.getImage = this.getImage.bind(this);
         this.getFunnyPic = this.getFunnyPic.bind(this);
+        this.getRobotPic = this.getRobotPic.bind(this);
     }
 
 // --------------------------------------------------------------
@@ -133,13 +117,15 @@ export default class AddProgrammer extends Component {
         // UPDATE
         if(this.state.updating){
             axios.put(`http://localhost:4000/api/programmer/${this.state.programmer.id}`, this.state.programmer).then( response => {
-                this.props.updateProgrammerCount(this.props.programmerCount);  
+                this.props.updateProgrammerCount(this.props.programmerCount); 
+                this.props.updateProgrammers(response.data);
             })
         // CREATE
         } else {
             axios.post('http://localhost:4000/api/programmers', this.state.programmer).then( response => {
                 // this.props.updateProgrammerCount(this.props.programmerCount + 1);  
                 this.props.updateProgrammerCount(response.data.length);  
+                this.props.updateProgrammers(response.data);
             })
         }
 
@@ -187,6 +173,18 @@ export default class AddProgrammer extends Component {
         })
     }
 // --------------------------------------------------------------
+    getRobotPic() {
+        let programmer = Object.assign({}, this.state.programmer);
+        console.log(`http://robohash.org/${programmer.name}${programmer.age}`);
+        axios.get(`http://robohash.org/${programmer.name}${programmer.age}`).then( response => {
+            programmer.imgURL = `http://robohash.org/${programmer.name}${programmer.age}`
+            // console.log("Dog data: ", response.data.data);
+            this.setState({
+                programmer,
+            })
+        })
+    }
+// --------------------------------------------------------------
 
     render() {
         let sliderComponents =  this.getSliderComponents();
@@ -197,8 +195,9 @@ export default class AddProgrammer extends Component {
                 Name: <input className="AddPerson-TextBox person-name" value={this.state.programmer.name} onChange={ e => this.updateName(e.target.value)} />
                 Age: <input type="number" className="AddPerson-TextBox person-age" value={this.state.programmer.age} onChange={ e => this.updateAge(e.target.value)} />
                 <br></br>
-                <input type="button" className="submit-button" value="Get an Image" onClick={this.getImage}></input>
-                <input type="button" className="submit-button" value="Get a funny looking picture" onClick={this.getFunnyPic}></input>
+                <input type="button" className="submit-button" value="Random Person Image" onClick={this.getImage}></input>
+                <input type="button" className="submit-button" value="Random 'Funny' looking Person Image" onClick={this.getFunnyPic}></input>
+                <input type="button" className="submit-button" value="Your Inner Robot" onClick={this.getRobotPic}></input>
                 <img className="image-box" src={this.state.programmer.imgURL}></img>
                 <div className="main">
                     <h3 className="AddPerson-Header">Add Some Code Skills!</h3>

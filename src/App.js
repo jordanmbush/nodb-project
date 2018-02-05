@@ -105,29 +105,44 @@ class App extends Component {
         cnt++;
       }
     }
-
     return cnt;
   }
 
   getPage(){
       let renderChoice = null;
+      let battleReadyCnt = this.getBattlReadyCount();
+
     switch(this.state.selectedComponent) {
       case 'addProgrammerButton':
-        renderChoice =  <AddProgrammer updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} selectedProgrammer={this.state.editProgrammer}/>
+        renderChoice =  <AddProgrammer updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} selectedProgrammer={this.state.editProgrammer} updateProgrammers={this.updateProgrammers}/>
         break;
       case 'seeAllProgrammersButton':
-        renderChoice = <BattleProgrammers selectProgrammer={this.setEditProgrammer} programmers={this.state.programmers} updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} updateProgrammers={this.updateProgrammers}/>
-        break
+        if(this.state.programmers.length === 0) {
+          // window.confirm("You need Combatants to Choose Combatants. I mean seriously. I shouldn't have to have this bit of code in here.");
+          this.setState({selectedComponent: 'addProgrammerButton'});
+          renderChoice =  <AddProgrammer updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} selectedProgrammer={this.state.editProgrammer} updateProgrammers={this.updateProgrammers}/>
+          break;
+        } else {
+          renderChoice = <BattleProgrammers selectProgrammer={this.setEditProgrammer} programmers={this.state.programmers} updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} updateProgrammers={this.updateProgrammers}/>
+          break
+        }
       case 'battleProgrammersButton':
-        let cnt = this.getBattlReadyCount();
-        if(cnt < 2) {
-          alert("Whoa there Mr. Durden. This isn't Fight Club. This is Code Club. You can't fight yourself here. Bring a friend next time, and read the rules.")
+        if(battleReadyCnt === 1) {
+          window.confirm("Whoa there Mr. Durden. This isn't Fight Club. This is Code Club. You can't fight yourself here. Bring a friend next time, and read the rules.")
+          renderChoice = <BattleProgrammers selectProgrammer={this.setEditProgrammer} programmers={this.state.programmers} updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} updateProgrammers={this.updateProgrammers}/>
+          break;
+        } else if (battleReadyCnt === 0) {
+          window.confirm("You don't bring a knife to a gun fight! But you do bring people/robots.");
+          this.setState({selectedComponent: 'seeAllProgrammersButton'});
+          renderChoice = <BattleProgrammers selectProgrammer={this.setEditProgrammer} programmers={this.state.programmers} updateProgrammerCount={this.updateProgrammerCount} programmerCount={this.state.programmerCount} updateProgrammers={this.updateProgrammers}/>
+          break;
         } else {
           renderChoice = <BattleField programmers={this.state.programmers} />
+          break;
         }
-        break
       case 'helpPageButton':
         renderChoice = <HelpPage />
+        break;
       default:
         break;
     }
