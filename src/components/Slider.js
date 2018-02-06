@@ -6,7 +6,7 @@ export default class Slider extends Component {
         return (
         <div>
             <div className="slidecontainer">
-                <input type="range" min="0" max="1000" value={this.props.value} className="slider" id={this.props.id} onInput={e => this.props.sliderChange(e)} />
+                <input type="range" min="0" max="1000" value={this.props.value} className={`slider ${this.props.id}-slider`} id={this.props.id} onInput={e => this.props.sliderChange(e)} />
                 <span>Value: <span id={this.props.spanID}>{this.props.value}</span></span>
             </div>
         </div>

@@ -82,12 +82,42 @@
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%; 
-  background: rgb(175, 173, 76);
+  width: 30px;
+  height: 30px;
+  /* border-radius: 50%;  */
+  background-size: cover;
+  /* background: rgb(175, 173, 76); */
   curser: pointer;
 }
+
+.react-slider::-webkit-slider-thumb {
+  background-image: url("https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png");
+}
+
+.javascript-slider::-webkit-slider-thumb {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2000px-Unofficial_JavaScript_logo_2.svg.png")
+}
+
+.html-slider::-webkit-slider-thumb {
+  background-image: url(https://www.w3.org/html/logo/downloads/HTML5_1Color_Black.svg);
+}
+.css-slider::-webkit-slider-thumb {
+  background-image: url(https://i2.wp.com/www.worldeatingdisordersday.org/wp-content/uploads/2016/03/css-logo.png);
+}
+.node-slider::-webkit-slider-thumb {
+  background-image: url(https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg);
+}
+.sql-slider::-webkit-slider-thumb {
+  background-image: url(https://n6-img-fp.akamaized.net/free-icon/sql-file-format-symbol_318-45794.jpg?size=338&ext=jpg);
+}
+.committment-slider::-webkit-slider-thumb {
+  background-image: url(https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAj1AAAAJGVlM2YwYTc2LWI1YzItNDE3MC04NWU4LWQ1MGU2YzZkYzc1Mg.jpg);
+}
+.commandPrompt-slider::-webkit-slider-thumb {
+  background-image: url(https://cdn1.macworld.co.uk/cmsdata/features/3608274/Terminalicon2_thumb800.png);
+
+}
+
 
 .slider::-moz-range-thumb {
   width: 25px;
